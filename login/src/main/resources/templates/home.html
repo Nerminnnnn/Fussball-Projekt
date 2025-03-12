@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fussball Wettbewerbe</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery for .ajax calls -->
+    <script type="text/javascript" th:src="@{/js/dostuff.js}"></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="images/footballbanner.png" alt="Fußball Banner" class="banner">
+
+        <h1>Willkommen auf unserer Fussballseite</h1>
+        <p>Erhalten Sie aktuelle Informationen zu Fussballwettbewerben, Ligatabellen und anstehenden Spielen.
+            Treten Sie unserer Community bei, um exklusive Inhalte zu genießen und immer auf dem neuesten Stand zu bleiben.</p>
+    </header>
+    <div id="competitions" class="section">
+        <div class="section-title">Fussball Wettbewerbe</div>
+        <p>Hier finden Sie eine Übersicht über alle aktuellen Fussballwettbewerbe. Verfolgen Sie die neuesten Ergebnisse
+            und Nachrichten zu Ihren Lieblingsligen und -teams. Von der Bundesliga über die Premier League bis hin zur Champions League
+            bieten wir Ihnen umfassende Informationen und Berichterstattung.</p>
+        <div id="competitions-content"></div>
+    </div>
+    <div id="standings" class="section">
+        <div class="section-title">Ligatabellen</div>
+        <p>Sehen Sie sich die aktuellen Tabellenstände der Ligen an. Bleiben Sie über die Positionen Ihrer Lieblingsteams
+            auf dem Laufenden und verfolgen Sie, wie sich die Teams im Laufe der Saison schlagen. Wir bieten detaillierte Tabellen
+            für alle großen Ligen weltweit.</p>
+        <div id="standings-content"></div>
+    </div>
+    <div id="matches" class="section">
+        <div class="section-title">Anstehende Spiele</div>
+        <p>Hier finden Sie eine Liste der anstehenden Fussballspiele. Verpassen Sie keine wichtigen Spiele und planen Sie Ihre
+            Fussballabende im Voraus. Erhalten Sie Informationen zu Spielzeiten, Austragungsorten und vielem mehr, damit Sie immer
+            bestens informiert sind.</p>
+        <div id="matches-content"></div>
+    </div>
+    <div class="button-group">
+        <button id="registerButton" onclick="showSection('register')">Registrieren</button>
+        <button id="loginButton" onclick="showSection('login')">Anmelden</button>
+    </div>
+    <div id="register" class="section" style="display:none;">
+        <br>
+        <br>
+        <div class="section-title">Registrierung</div>
+        <p>Treten Sie unserer Community bei, indem Sie ein Konto erstellen. Sie erhalten Zugang zu exklusiven Inhalten
+            und können Ihre Lieblingsmannschaften verfolgen. Erhalten Sie personalisierte Updates und bleiben Sie über
+            alle wichtigen Ereignisse informiert.</p>
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Benutzername">
+            <input type="password" id="password" placeholder="Passwort">
+            <button onclick="register()">Registrieren</button>
+            <div class="response" id="createResponse"></div>
+        </div>
+    </div>
+    <div id="login" class="section" style="display:none;">
+        <br>
+        <br>
+        <div class="section-title">Anmeldung</div>
+        <p>Melden Sie sich an, um auf Ihre personalisierten Inhalte zuzugreifen und Ihre Lieblingsmannschaften zu verfolgen.
+            Mit Ihrem Konto können Sie alle Funktionen unserer Website nutzen, einschließlich des Zugriffs auf exklusive News,
+            Live-Spielstände und vieles mehr.</p>
+        <form action="/auth/login" method="post">
+            <div class="form-group">
+                <input type="text" id="login_username" name="username" placeholder="Benutzername">
+                <input type="password" id="login_password" name="password" placeholder="Passwort">
+                <button type="submit">Einloggen</button>
+            </div>
+            <div class="error-message">
+                <th:block th:if="${param.error}">
+                    Ungültiger Benutzername oder Passwort.
+                </th:block>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showSection(sectionId) {
+        document.getElementById('register').style.display = 'none';
+        document.getElementById('login').style.display = 'none';
+        document.getElementById(sectionId).style.display = 'block';
+    }
+</script>
+</body>
+</html>

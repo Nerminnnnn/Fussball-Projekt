@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmeldung & Registrierung</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <script type="text/javascript" th:src="@{/js/dostuff.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <input type="radio" id="login" name="tab" checked>
+        <input type="radio" id="register" name="tab">
+        <div class="tabs">
+            <label for="login">Anmelden</label>
+            <label for="register">Registrieren</label>
+        </div>
+        <div class="forms">
+            <div class="login-form">
+                <h2>Anmeldung</h2>
+                <form action="/login" method="post">
+                    <div class="input-group">
+                        <label for="login-username">Benutzername</label>
+                        <input type="text" id="login-username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Passwort</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit">Anmelden</button>
+                </form>
+            </div>
+            <div class="register-form">
+                <h2>Registrierung</h2>
+                <form action="/register" method="post">
+                    <div class="input-group">
+                        <label for="register-username">Benutzername</label>
+                        <input type="text" id="register-username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Passwort</label>
+                        <input type="password" id="register-password" name="password" required>
+                    </div>
+                    <button type="submit">Registrieren</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

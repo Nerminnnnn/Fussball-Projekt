@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fussball</title>
+    <link rel="stylesheet" th:href="@{/css/styles3.css}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/userhome.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="profile-icon" onclick="toggleProfileMenu()">
+            <img src="images/user-icon.png" alt="User Icon">
+        </div>
+        <div class="profile-menu" id="profile-menu" style="display: none;">
+            <p>Benutzername: <span id="username"></span></p>
+            <button onclick="logout()">Abmelden</button>
+            <button onclick="showChangeUsername()">Benutzernamen ändern</button>
+            <button onclick="showChangePassword()">Passwort ändern</button>
+        </div>
+    </div>
+
+    <header>
+
+    </header>
+    <h1>Fußball-Wettbewerbe</h1>
+    <p>Willkommen, <span id="welcome-username"></span>!</p>
+
+    <h2>Wettbewerbe</h2>
+    <input type="text" id="search-input" placeholder="Wettbewerb suchen...">
+    <select id="competition-select">
+        <option value="">Wettbewerb auswählen</option>
+        <option th:each="competition : ${competitions}" th:value="${competition.id}" th:text="${competition.name}"></option>
+    </select>
+
+    <div id="standings-section" style="display: none;">
+        <h3>Tabellenstände</h3>
+        <div id="standings-content"></div>
+    </div>
+
+    <div id="teams-section" style="display: none; margin-top: 20px;">
+        <h3>Teams</h3>
+        <select id="team-select">
+            <option value="">Team auswählen</option>
+        </select>
+        <button id="show-matches-button" style="display: none;">Spiele anzeigen</button>
+    </div>
+
+    <div id="matches-section" style="display: none; margin-top: 20px;">
+        <h3>Spiele</h3>
+        <div id="matches-content"></div>
+    </div>
+
+    <div id="favorites-section" style="margin-top: 20px;">
+        <h3>Ihre Lieblingsteams</h3>
+        <div id="favorites-content"></div>
+    </div>
+
+    <!-- Change Username Form -->
+    <div id="change-username-section" style="display: none; margin-top: 20px;">
+        <h3>Benutzernamen ändern</h3>
+        <input type="text" id="new-username" placeholder="Neuer Benutzername">
+        <button id="change-username-button">Benutzernamen ändern</button>
+    </div>
+
+    <!-- Change Password Form -->
+    <div id="change-password-section" style="display: none; margin-top: 20px;">
+        <h3>Passwort ändern</h3>
+        <input type="password" id="new-password" placeholder="Neues Passwort">
+        <button id="change-password-button">Passwort ändern</button>
+    </div>
+
+    <div id="confirmation-message" style="display: none; margin-top: 20px;"></div>
+</div>
+</body>
+</html>
