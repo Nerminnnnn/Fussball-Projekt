@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles3.css}"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/userhome.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="profile-icon" onclick="toggleProfileMenu()">
+            <img src="/images/user-icon.png" alt="User Icon">
+        </div>
+        <div class="profile-menu" id="profile-menu" style="display: none;">
+            <p>Username: <span id="username"></span></p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <h1>User Home</h1>
+    <p>Welcome, <span id="welcome-username"></span>!</p>
+
+    <h2>Competitions</h2>
+    <input type="text" id="search-input" placeholder="Search Competition...">
+    <select id="competition-select">
+        <option value="">Select Competition</option>
+        <option th:each="competition : ${competitions}" th:value="${competition.id}" th:text="${competition.name}"></option>
+    </select>
+
+    <div id="standings-section" style="display: none;">
+        <h3>Standings</h3>
+        <div id="standings-content"></div>
+    </div>
+
+    <div id="teams-section" style="display: none; margin-top: 20px;">
+        <h3>Teams</h3>
+        <select id="team-select">
+            <option value="">Select Team</option>
+        </select>
+        <button id="show-matches-button" style="display: none;">Show Matches</button>
+    </div>
+
+    <div id="matches-section" style="display: none; margin-top: 20px;">
+        <h3>Matches</h3>
+        <div id="matches-content"></div>
+    </div>
+
+    <div id="favorites-section" style="margin-top: 20px;">
+        <h3>Your Favorite Teams</h3>
+        <div id="favorites-content"></div>
+    </div>
+</div>
+</body>
+</html>
